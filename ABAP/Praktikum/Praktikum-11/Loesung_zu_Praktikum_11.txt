@@ -1,0 +1,246 @@
+﻿Lösung zu Praktikum 11 (Bike)
+-----------------------------
+
+Bikeklasse (Auslöser):
+----------------------
+class ZKOE1_PRAKT_CL_BIKEEVENT_DB definition
+  public
+  final
+  create public .
+
+public section.
+
+  events BIKE_CREATED
+    exporting
+      value(EO_BIKE) type ref to ZKOE1_PRAKT_CL_BIKEEVENT_DB .
+
+  methods CONSTRUCTOR
+    importing
+      !IS_BIKE type ZKOE1_PRAKT_BIKE .
+  methods DISPLAY_DATA .
+  methods GET_DATA
+    returning
+      value(RS_BIKE) type ZKOE1_PRAKT_BIKE .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+    DATA: ms_bike TYPE zkoe1_prakt_bike.
+
+ENDCLASS.
+
+
+
+CLASS ZKOE1_PRAKT_CL_BIKEEVENT_DB IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEEVENT_DB->CONSTRUCTOR
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IS_BIKE                        TYPE        ZKOE1_PRAKT_BIKE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD constructor.
+    ms_bike = is_bike.
+
+    RAISE EVENT bike_created EXPORTING eo_bike = me.
+*    message |Event { mv_bezeichnung } ausgelöst| type 'I'.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEEVENT_DB->DISPLAY_DATA
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD display_data.
+    WRITE:/1  ms_bike-description, 30 ms_bike-gear, 45(4) ms_bike-numbgear,
+           53(5) ms_bike-wheelsize, 60 ms_bike-handlebar, 80 ms_bike-price.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEEVENT_DB->GET_DATA
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] RS_BIKE                        TYPE        ZKOE1_PRAKT_BIKE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method GET_DATA.
+    rs_bike = ms_bike.
+  endmethod.
+ENDCLASS.
+
+
+Poolklasse (Behandler):
+-----------------------
+class ZKOE1_PRAKT_CL_BIKEPOOL_DB definition
+  public
+  final
+  create public .
+
+public section.
+
+  types:
+    tt_o_bikes TYPE TABLE OF REF TO zkoe1_prakt_cl_bikeevent_db .
+
+  methods ANZAHL
+    returning
+      value(RN_ANZAHL) type I .
+  methods MIN_PREIS
+    returning
+      value(RN_MINPREIS) type DEC10_2 .
+  methods AUSGABE .
+  methods ON_BIKE_CREATED
+    for event BIKE_CREATED of ZKOE1_PRAKT_CL_BIKEEVENT_DB
+    importing
+      !EO_BIKE .
+  methods ENTFERNE_BIKE
+    importing
+      !IN_MID type ZKOE1_PRAKT_BIKE-MID .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+    DATA:
+       mt_o_bikes TYPE TABLE OF REF TO zkoe1_prakt_cl_bikeevent_db .
+
+    METHODS add_bike
+      IMPORTING
+        !io_bike TYPE REF TO zkoe1_prakt_cl_bikeevent_db .
+ENDCLASS.
+
+
+
+CLASS ZKOE1_PRAKT_CL_BIKEPOOL_DB IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->ADD_BIKE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IO_BIKE                        TYPE REF TO ZKOE1_PRAKT_CL_BIKEEVENT_DB
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD ADD_BIKE.
+    APPEND io_bike TO mt_o_bikes.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->ANZAHL
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] RN_ANZAHL                      TYPE        I
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD ANZAHL.
+    rn_anzahl = lines( mt_o_bikes ).
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->AUSGABE
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD AUSGABE.
+    LOOP AT mt_o_bikes INTO DATA(lo_bike).
+      WRITE:/1(2)   lo_bike->get_data( )-mid,
+             4(15)  lo_bike->get_data( )-description,
+             20(10) lo_bike->get_data( )-gear,
+             35(5)  lo_bike->get_data( )-numbgear,
+             45(10) lo_bike->get_data( )-handlebar,
+             60     lo_bike->get_data( )-price.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->ENTFERNE_BIKE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IN_MID                         TYPE        ZKOE1_PRAKT_BIKE-MID
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD entferne_bike.
+*    LOOP AT mt_o_bikes INTO DATA(lo_bike).
+*      IF lo_bike = io_bike.
+*        DELETE mt_o_bikes INDEX sy-tabix.
+*      ENDIF.
+*    ENDLOOP.
+*    oder:
+*    DELETE mt_o_bikes WHERE table_line = io_bike.
+
+    LOOP AT mt_o_bikes INTO DATA(go_bike).
+      IF go_bike->get_data( )-mid = in_mid.
+        DELETE mt_o_bikes WHERE table_line = go_bike.
+      ENDIF.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->MIN_PREIS
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] RN_MINPREIS                    TYPE        DEC10_2
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD MIN_PREIS.
+    rn_minpreis = mt_o_bikes[ 1 ]->get_data( )-price.
+    LOOP AT mt_o_bikes INTO DATA(lo_bike).
+      IF lo_bike->get_data( )-price < rn_minpreis.
+        rn_minpreis = lo_bike->get_data( )-price.
+      ENDIF.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZKOE1_PRAKT_CL_BIKEPOOL_DB->ON_BIKE_CREATED
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] EO_BIKE                        LIKE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD ON_BIKE_CREATED.
+    add_bike( io_bike = eo_bike ).
+  ENDMETHOD.
+ENDCLASS.
+
+
+Hauptprogramm:
+--------------
+*&---------------------------------------------------------------------*
+*& Report  zkoe1_prakt_r_pr09_bikeevent.
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+REPORT zkoe1_prakt_r_pr09_bikeevent.
+
+DATA: go_bikepool TYPE REF TO zkoe1_prakt_cl_bikepool_db,
+      go_bike     TYPE REF TO zkoe1_prakt_cl_bikeevent_db,
+      gs_bike     TYPE zkoe1_prakt_bike.
+
+START-OF-SELECTION.
+  go_bikepool = NEW  zkoe1_prakt_cl_bikepool_db( ).
+  SET HANDLER go_bikepool->on_bike_created FOR ALL INSTANCES.
+
+  SELECT SINGLE * FROM zkoe1_prakt_bike
+    INTO @gs_bike
+    WHERE mid = 3.
+
+  go_bike = NEW zkoe1_prakt_cl_bikeevent_db( gs_bike ).
+*  go_bikepool->add_bike( go_bike ).
+
+  SELECT SINGLE * FROM zkoe1_prakt_bike
+    INTO @gs_bike
+    WHERE mid = 6.
+
+  go_bike = NEW zkoe1_prakt_cl_bikeevent_db( gs_bike ).
+*  go_bikepool->add_bike( go_bike2 ).
+
+  SELECT SINGLE * FROM zkoe1_prakt_bike
+    INTO @gs_bike
+    WHERE mid = 7.
+
+  go_bike = NEW zkoe1_prakt_cl_bikeevent_db( gs_bike ).
+*  go_bikepool->add_bike( go_bike ).
+
+  go_bikepool->ausgabe( ).
+  SKIP 2.
+  WRITE:/ 'Günstigstes Fahrrad:', go_bikepool->min_preis( ).
+  SKIP 2.
+  WRITE:/ 'Entferne nun Bike mit Mid = 6:'.
+
+
+  go_bikepool->entferne_bike( in_mid = 6 ).
+
+  go_bikepool->ausgabe( ).
+  SKIP 2.
+  WRITE:/ 'Günstigstes Fahrrad:', go_bikepool->min_preis( ).

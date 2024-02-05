@@ -1,0 +1,13 @@
+PARAMETERS: p_knr TYPE zpe_kunde-kundennr DEFAULT 624456.
+
+
+
+
+
+
+WRITE: / |{ gs_kunde-vorname } { gs_kunde-nachname }(Kundennr { p_knr })|.
+ULINE.
+WRITE: / 'Depotnr', 15 'Depottyp', 30 'Anzahl'.
+
+
+

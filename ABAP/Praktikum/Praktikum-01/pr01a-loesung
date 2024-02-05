@@ -1,0 +1,47 @@
+*&---------------------------------------------------------------------*
+*& Report zkoe1_10a_praktikum1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zkoe1_wh_praktikum1.
+DATA: gn_alter  TYPE i,
+      gn_urlaub TYPE i.
+
+START-OF-SELECTION.
+  SELECT * FROM zhcm_mitarbeiter
+  INTO TABLE @DATA(gt_mit).
+
+  WRITE:/ 'Urlaubsansprüche für das Jahr', sy-datum+0(4).
+  ULINE.
+  LOOP AT gt_mit INTO DATA(gs_mit).
+    CALL FUNCTION 'COMPUTE_YEARS_BETWEEN_DATES'
+      EXPORTING
+        first_date          = gs_mit-gebdat
+        second_date         = sy-datum
+      IMPORTING
+        years_between_dates = gn_alter.
+
+    gn_urlaub = gn_urlaub + gs_mit-urltage.
+    IF gn_alter BETWEEN 15 AND 65.
+      IF gn_alter < 18.
+        gn_urlaub = gn_urlaub + 5.
+      ENDIF.
+
+      IF gn_alter > 55.
+        gn_urlaub = gn_urlaub + 2.
+      ENDIF.
+      IF gs_mit-gradbeh > 50.
+        gn_urlaub = gn_urlaub + 5.
+      ENDIF.
+
+      WRITE:/ |{ gs_mit-vorname } { gs_mit-name }|, 25 'Alter:', (3) gn_alter LEFT-JUSTIFIED,
+      40 'GdB:', (4) gs_mit-gradbeh,
+      55 'Urlaub:',(3) gn_urlaub, 'Tage'.
+    ELSE.
+      WRITE:/ |{ gs_mit-vorname } { gs_mit-name }|, 25 'Alter:', (3) gn_alter  LEFT-JUSTIFIED,
+      40 'GdB:', (4) gs_mit-gradbeh,
+      55 'hat das falsche Alter'.
+    ENDIF.
+    CLEAR: gn_urlaub.
+
+  ENDLOOP.

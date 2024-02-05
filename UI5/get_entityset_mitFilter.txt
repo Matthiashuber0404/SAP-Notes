@@ -1,0 +1,30 @@
+METHOD pupilset_get_entityset.
+    DATA: lt_filter_cid TYPE /iwbep/t_cod_select_options.
+    DATA: lt_filter_groupno TYPE /iwbep/t_cod_select_options.
+    DATA: lv_where TYPE string.
+
+    lv_where = ||.
+    LOOP AT it_filter_select_options ASSIGNING FIELD-SYMBOL(<fs_filter>).
+      CASE <fs_filter>-property.
+        WHEN 'Cid'.
+          lt_filter_cid = <fs_filter>-select_options.
+        WHEN 'Groupno'.
+          lt_filter_groupno = <fs_filter>-select_options.
+      ENDCASE.
+    ENDLOOP.
+
+    IF lines( lt_filter_cid ) > 0.
+      lv_where = |{ lv_where } and cid IN lt_filter_cid|.
+    ENDIF.
+
+    IF lines( lt_filter_groupno ) > 0.
+      lv_where = |{ lv_where } and groupno IN lt_filter_groupno|.
+    ENDIF.
+
+    REPLACE FIRST OCCURRENCE OF 'and' IN lv_where WITH space.
+
+    SELECT * FROM z001_63_pupil
+            INTO TABLE et_entityset
+            WHERE (lv_where).
+
+  ENDMETHOD.

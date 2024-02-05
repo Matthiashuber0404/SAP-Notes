@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+.aussen {
+    margin: 5%
+}
+.innen {
+    padding:2%;
+}
+.textcolor {
+    color: red
+}
+.font{
+    font-size: larger;
+    font-weight: bolder;
+}
+.tile {
+    background-color: bisque;
+}

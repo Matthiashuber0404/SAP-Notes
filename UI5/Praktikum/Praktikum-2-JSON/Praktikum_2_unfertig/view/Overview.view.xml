@@ -1,0 +1,25 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" controllerName="routing.template.controller.Overview">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Panel content="{food>/Kategorie}">
+						<GenericTile header="{food>katbez}" subheader="{food>katid}" class="sapUiSmallMargin" press="onTile">
+							<TileContent footer="Footer">
+								<ImageContent src="{food>pic}"></ImageContent>
+							</TileContent>
+						</GenericTile>
+					</Panel>
+				</content>
+				<footer>
+					<Toolbar >
+						<ToolbarSpacer ></ToolbarSpacer>
+						<Button text="zur Detailseite" press="onZurDetailseiteButtonPress" />
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

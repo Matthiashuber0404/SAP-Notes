@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content=":email:heidi.koeckeis@dvschule-plattling.de">
+<title>ABAP Objects</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>ABAP Objects</h1>
+<div class="details">
+<span id="author" class="author">Heidi Köckeis</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_grundlagen_zur_objektorientierung">1. Grundlagen zur Objektorientierung</a>
+<ul class="sectlevel2">
+<li><a href="#_anlegen_einer_klasse">1.1. Anlegen einer Klasse</a></li>
+<li><a href="#_instanziieren_von_objekten">1.2. Instanziieren von Objekten</a></li>
+<li><a href="#_attribute_und_methoden">1.3. Attribute und Methoden</a></li>
+<li><a href="#_konstruktoren">1.4. Konstruktoren</a></li>
+<li><a href="#_klasse_mit_zugriff_auf_db_tabelle">1.5. Klasse mit Zugriff auf DB-Tabelle</a></li>
+</ul>
+</li>
+<li><a href="#_klassenbasierte_ausnahmen">2. Klassenbasierte Ausnahmen</a>
+<ul class="sectlevel2">
+<li><a href="#_prinzip">2.1. Prinzip</a></li>
+<li><a href="#_verwendung_von_bestehenden_fehlerklassen">2.2. Verwendung von bestehenden Fehlerklassen</a></li>
+<li><a href="#_eigene_ausnahmeklassen">2.3. Eigene Ausnahmeklassen</a></li>
+</ul>
+</li>
+<li><a href="#_assoziation_mit_anderen_klassen">3. Assoziation mit anderen Klassen</a>
+<ul class="sectlevel2">
+<li><a href="#_beziehung_11">3.1. Beziehung 1:1</a></li>
+<li><a href="#_beziehung_1n">3.2. Beziehung 1:n</a></li>
+</ul>
+</li>
+<li><a href="#_vererbung">4. Vererbung</a>
+<ul class="sectlevel2">
+<li><a href="#_unterklassen_methoden_neu_definieren_redefinition">4.1. Unterklassen: Methoden neu definieren: REDEFINITION</a></li>
+<li><a href="#_vererbung_und_konstruktoren">4.2. Vererbung und Konstruktoren</a></li>
+<li><a href="#_polymorphie">4.3. Polymorphie</a></li>
+<li><a href="#_abstrakte_und_finale_klassen">4.4. Abstrakte und finale Klassen</a></li>
+<li><a href="#_beispiel">4.5. Beispiel</a></li>
+</ul>
+</li>
+<li><a href="#_interfaces">5. Interfaces</a>
+<ul class="sectlevel2">
+<li><a href="#_interface_anlegen">5.1. Interface anlegen</a></li>
+<li><a href="#_interface_in_klasse_verwenden_und_implementieren">5.2. Interface in Klasse verwenden und implementieren</a></li>
+<li><a href="#_interface_methoden_im_hauptprogramm">5.3. Interface-Methoden im Hauptprogramm</a></li>
+<li><a href="#_aliases">5.4. Aliases</a></li>
+<li><a href="#_statische_interfacekomponenten">5.5. Statische Interfacekomponenten</a></li>
+</ul>
+</li>
+<li><a href="#_events">6. Events</a>
+<ul class="sectlevel2">
+<li><a href="#_ereignisse_deklarieren">6.1. Ereignisse deklarieren</a></li>
+<li><a href="#_ereignisse_auslösen">6.2. Ereignisse auslösen</a></li>
+<li><a href="#_ereignisse_behandeln">6.3. Ereignisse behandeln</a></li>
+<li><a href="#_ereignisbehandlermethoden_registrieren">6.4. Ereignisbehandlermethoden registrieren</a></li>
+</ul>
+</li>
+<li><a href="#_weitere_objektorientierte_konzepte">7. Weitere objektorientierte Konzepte</a>
+<ul class="sectlevel2">
+<li><a href="#_singleton_pattern">7.1. Singleton-Pattern</a></li>
+</ul>
+</li>
+<li><a href="#_friends">8. Friends</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grundlagen_zur_objektorientierung">1. Grundlagen zur Objektorientierung</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Es werden Objekte/Klassen mit den dazugehörigen Konzepten unterstützt.</p>
+</li>
+<li>
+<p>Klassen beschreiben Objekte und stellen deren Baupläne dar. Auf Basis einer Klasse können theoretisch unbegrenzte Mengen gleichartiger Objekte (Instanzen) erstellt werden.</p>
+</li>
+<li>
+<p>Jede Instanz einer Klasse (Objekt) besitzt eigene Werte für alle ihre Attribute und eine eindeutige Identität.</p>
+</li>
+<li>
+<p>Um die Eigenschaften von Objektinstanzen beschreiben zu können, enthalten Klassen (und damit auch die abgeleiteten Instanzen) Attribute für den Zustand der Objekte sowie Methoden zur Beschreibung des Verhaltens</p>
+</li>
+<li>
+<p>In ABAP/Objects gibt es drei Sichtbarkeitsbereiche für die Eigenschaften<br>
+a) <strong>public</strong>: Schnittstelle der Klasse für die Verwendung nach außen<br>
+b) <strong>protected</strong> (geschützt): Schnittstelle zu den abgeleiteten Klassen (Vererbung)<br>
+c) <strong>private</strong>: von außen nicht zugängliche Eigenschaften &#8658; Kapselung!</p>
+</li>
+<li>
+<p>Darüber hinaus gibt es Eigenschaften, die auch ohne eine konkrete Instanz definiert werden können und je Klasse nur einmal existieren &#8658; statische Eigenschaften der Klasse &lt;&#8658; Instanzeigenschaften einer Objektinstanz (je Objekt einmal)</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="_anlegen_einer_klasse">1.1. Anlegen einer Klasse</h3>
+<div class="paragraph">
+<p><strong>Möglichkeit 1: Erstellung lokaler Klassen</strong>, auf die nur innerhalb eines Reports/Funktionsgruppe/Baustein zugegriffen werden kann.<br>
+Hierbei gilt grundsätzlich folgendes Schema:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02KlasseAbap.png" alt="Klasse">
+</div>
+<div class="title">Figure 1. Aufbau einer Klasse in ABAP</div>
+</div>
+<div class="paragraph">
+<p><strong>Achtung</strong>: Anders als in Java / VB, aber wie in C++ gibt es in ABAP eine Trennung zwischen der Definition/Deklaration und der Implementierung einer Klasse.</p>
+</div>
+<div class="paragraph">
+<p><strong>Hinweis: Wie immer geben Sie bei der Benutzung von Klammern ein Leerzeichen auch in die leere Klammer ein!!!</strong></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Beispiel 1: Lokale Klasse SCHUELER</strong></p>
+</div>
+<div class="ulist">
+<div class="title">UML-Notation:</div>
+<ul>
+<li>
+<p>Eigenschaften: Name, Vorname, Ort, Klasse</p>
+</li>
+<li>
+<p>Methoden: zieheUm, wechsleKlasse</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02UMLSchuelerAbap.png" alt="UML Schüler">
+</div>
+<div class="title">Figure 2. UML Schüler</div>
+</div>
+<div class="paragraph">
+<p><strong>Achtung</strong>: Attribute wurden (aus Vereinfachungsgründen) bewusst public definiert – dies wird sich später ändern!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_schueler DEFINITION.
+  PUBLIC SECTION.
+    TYPES:
+      tv_ort(30)   TYPE c,
+      tv_klasse(8) TYPE c.
+    DATA:
+      mv_name(30)    TYPE c,
+      mv_vorname(20) TYPE c,
+      mv_ort         TYPE tv_ort,
+      mv_klasse      TYPE tv_klasse.
+    CLASS-DATA:
+      gn_instances TYPE i VALUE 0.
+    METHODS:
+      ziehe_um IMPORTING VALUE(iv_ort) TYPE tv_ort,
+      wechsle_klasse IMPORTING VALUE(iv_klasse) TYPE tv_klasse.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Anmerkungen</strong>:<br>
+•	Es werden neue Typen definiert, damit diese als Parametertypen verwendet werden können.<br>
+•	Der Bezeichner CLASS-DATA kennzeichnet statische Attribute, die je Klasse nur einmal erzeugt werden (analog hierzu: CLASS-METHODS).<br>
+•	Das Schlüsselwort METHODS definiert neben den Methoden selbst die ImportParameter der Methoden.<br>
+•	Die Syntax zur Erstellung der Methoden folgt der Vorgehensweise für die Unterprogramme.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_schueler IMPLEMENTATION.
+  METHOD ziehe_um.
+    mv_ort = iv_ort.
+  ENDMETHOD.
+
+  METHOD wechsle_klasse.
+    mv_klasse = iv_klasse.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Der Zugriff auf Eigenschaften von Instanzen erfolgt über den einfachen Pfeil
+“&#8594;“ (Objektkomponentenselektor).</p>
+</li>
+<li>
+<p>Die Selbstreferenz (me) entspricht „this“ in Java und sollte verwendet werden.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Die Klasse ist damit abgeschlossen und kann im Rahmen eines normalen Reports verwendet werden. Damit diese allerdings bekannt ist, muss sie vor dem eigentlichen Quelltext stehen!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instanziieren_von_objekten">1.2. Instanziieren von Objekten</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Variablen werden über eine Objektreferenz (REF TO) erzeugt – sie „zeigen“ auf einen entsprechenden Objekttyp; weitere Variablen können über like oder type erstellt werden.</p>
+</li>
+<li>
+<p>Objekte werden mit der Anweisung new (früher: create object) erzeugt.</p>
+</li>
+<li>
+<p>Selbstverständlich ist auch die Zuweisung von Objektreferenzvariablen möglich –
+go_schueler1 = go_schueler2.<br>
+Damit zeigen beide auf die gleiche Speicherstelle.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">DATA:
+  go_schueler1 TYPE REF TO lcl_schueler,
+  go_schueler2 TYPE REF TO lcl_schueler.
+
+START-OF-SELECTION.
+  go_schueler1 = NEW lcl_schueler( ).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_attribute_und_methoden">1.3. Attribute und Methoden</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Der Zugriff auf statische Attribute und statische Methoden erfolgt über den Klassenkomponenten-
+selektor „&#8658;“</p>
+</li>
+<li>
+<p>Der Zugriff auf Eigenschaften von Instanzen geschieht über den Objektkomponenten-selektor „&#8594;“</p>
+</li>
+<li>
+<p>Für den Aufruf von Methoden musste in „alten“ ABAP-Versionen die Anweisung call method &#8230;&#8203; exporting &#8230;&#8203; verwendet werden. Jetzt sollte nur noch die neue Schreibweise mit Klammertechnik benutzt werden.</p>
+</li>
+<li>
+<p>Objektreferenzvariablen zeigen auf Objekte – die Existenz eines Objektes steht und fällt mit der Existenz von Variablen, die darauf gerichtet sind: mit Löschen der „letzten“ Referenz auf ein Objekt wird auch das Objekt selbst (der dadurch in Anspruch genommene Speicherplatz) vom Garbage Collector gelöscht.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">DATA:
+  go_schueler1 TYPE REF TO lcl_schueler,
+  go_schueler2 TYPE REF TO lcl_schueler.
+
+START-OF-SELECTION.
+  go_schueler1 = NEW lcl_schueler( ).
+  lcl_schueler=&gt;gn_instances = lcl_schueler=&gt;gn_instances + 1.
+  go_schueler1-&gt;mv_name = 'Huber'.
+  go_schueler1-&gt;mv_vorname = 'Jonas'.
+  go_schueler1-&gt;mv_ort = 'München'.
+  go_schueler1-&gt;mv_klasse = 'FS11'.
+  WRITE:/ go_schueler1-&gt;mv_name,
+          go_schueler1-&gt;mv_vorname,
+          go_schueler1-&gt;mv_ort,
+          go_schueler1-&gt;mv_klasse.
+* Schüler zieht um
+  go_schueler1-&gt;ziehe_um( 'Plattling' ).
+* Schüler wechselt die Klasse
+  go_schueler1-&gt;wechsle_klasse( 'FS12' ).
+  WRITE:/ go_schueler1-&gt;mv_name,
+         go_schueler1-&gt;mv_vorname,
+         go_schueler1-&gt;mv_ort,
+         go_schueler1-&gt;mv_klasse.
+
+  go_schueler2 = NEW lcl_schueler( ).
+  lcl_schueler=&gt;gn_instances = lcl_schueler=&gt;gn_instances + 1.
+  go_schueler2-&gt;mv_name = 'Meier'.
+  go_schueler2-&gt;mv_vorname = 'Stefan'.
+  go_schueler2-&gt;mv_ort = 'Regensburg'.
+  go_schueler2-&gt;mv_klasse = 'BFS11a'.
+  WRITE:/ go_schueler2-&gt;mv_name,
+       go_schueler2-&gt;mv_vorname,
+       go_schueler2-&gt;mv_ort,
+       go_schueler2-&gt;mv_klasse.
+
+  WRITE:/ 'Anzahl Instanzen (Schüler) : ' , lcl_schueler=&gt;gn_instances.</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausgabe1ABAP.png" alt="Ausgabe1">
+</div>
+<div class="title">Figure 3. Ergebnisausgabe</div>
+</div>
+<div class="paragraph">
+<p>Im Beispiel oben wurden die Objekt-Eigenschaften direkt im Quelltext gesetzt und als <em>public</em> deklariert. Dies hat mit oo-Denken wenig zu tun.</p>
+</div>
+<div class="paragraph">
+<p><strong>Die bessere Variante ist, dass alle Attribute als private deklariert werden.</strong><br>
+Dann sind jeweils öffentliche get- und set-Methoden für die Attribute zu erstellen (get liefert den AttributWert, set setzt ihn).</p>
+</div>
+<div class="paragraph">
+<p>Der Einfachkeit halber wurde hier der <em>Vorname</em> vernachlässigt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_schueler DEFINITION.
+  PUBLIC SECTION.
+    TYPES:
+      tv_name(30)    TYPE c,
+      tv_vorname(30) TYPE c,
+      tv_ort(30)     TYPE c,
+      tv_klasse(8)   TYPE c.
+
+    METHODS:
+      ziehe_um       IMPORTING VALUE(iv_ort) TYPE tv_ort,
+      wechsle_klasse IMPORTING VALUE(iv_klasse) TYPE tv_klasse,
+      get_name    RETURNING VALUE(rv_name) TYPE tv_name,
+      set_name    IMPORTING VALUE(iv_name) TYPE tv_name,
+      get_ort     RETURNING VALUE(rv_ort) TYPE tv_ort,
+      set_ort     IMPORTING VALUE(iv_ort) TYPE tv_ort,
+      get_klasse  RETURNING VALUE(rv_klasse) TYPE tv_klasse,
+      set_klasse  IMPORTING VALUE(iv_klasse) TYPE tv_klasse.
+  PRIVATE SECTION.
+    DATA:
+      mv_name(30)    TYPE c,
+      mv_vorname(20) TYPE c,
+      mv_ort         TYPE tv_ort,
+      mv_klasse      TYPE tv_klasse.
+ENDCLASS.
+
+CLASS lcl_schueler IMPLEMENTATION.
+  METHOD ziehe_um.
+    "lokaler Definitionsbereich wäre hier möglich
+    mv_ort = iv_ort.
+  ENDMETHOD.
+  METHOD wechsle_klasse.
+    mv_klasse = iv_klasse.
+  ENDMETHOD.
+  METHOD get_name.
+    rv_name = mv_name.
+  ENDMETHOD.
+  METHOD set_name.
+    mv_name = iv_name.
+  ENDMETHOD.
+  METHOD get_ort.
+    rv_ort = mv_ort.
+  ENDMETHOD.
+  METHOD set_ort.
+    mv_ort = iv_ort.
+  ENDMETHOD.
+  METHOD get_klasse.
+    rv_klasse = mv_klasse.
+  ENDMETHOD.
+  METHOD set_klasse.
+    mv_klasse = iv_klasse.
+  ENDMETHOD.
+ENDCLASS.
+
+DATA:
+  go_schueler1 TYPE REF TO lcl_schueler.
+
+START-OF-SELECTION.
+  go_schueler1 = NEW lcl_schueler( ).
+
+  go_schueler1-&gt;set_name( 'Huber' ).
+  go_schueler1-&gt;set_ort( 'München' ).
+  go_schueler1-&gt;set_klasse( 'FS11' ).
+  WRITE:/ go_schueler1-&gt;get_name( ),
+          go_schueler1-&gt;get_ort( ),
+          go_schueler1-&gt;get_klasse( ).
+* Schüler zieht um
+  go_schueler1-&gt;ziehe_um( 'Plattling' ).
+* Schüler wechselt die Klasse
+  go_schueler1-&gt;wechsle_klasse( 'FS12' ).
+  WRITE:/ go_schueler1-&gt;get_name( ),
+         go_schueler1-&gt;get_ort( ),
+         go_schueler1-&gt;get_klasse( ).</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Möglichkeit 2: Erstellung von (globalen) Klassen über den Class Builder</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>&#8658; Class Builder, SE24 bzw. über SE80</strong></p>
+</div>
+<div class="paragraph">
+<p>&#8658; Hierüber können im Rahmen der SAP-Klassenbibliothek Klassen erstellt werden, die im Gegensatz zu lokalen Klassen „an jeder Stelle“ im SAP sichtbar sind und die über den Einsatz innerhalb eines Reports hinaus wiederverwendbar sind.</p>
+</div>
+<div class="paragraph">
+<p>&#8658; Der Entwickler kann die Klassen-Komponenten mit einem grafischen Editor erstellen – der Quelltext ist von Hand zu erstellen.</p>
+</div>
+<div class="paragraph">
+<p>Diese Variante in in einem gesonderten Kapitel beschrieben.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_konstruktoren">1.4. Konstruktoren</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Objekte werden zur Laufzeit eines Programmes explizit erzeugt (NEW &#8230;&#8203;, früher: <em>CREATE OBJECT</em>).</p>
+</li>
+<li>
+<p>Mit ihrer Erzeugung erhalten sie auch ihre Identität, die durch initiale Attributwerte festgelegt ist.</p>
+</li>
+<li>
+<p>Die Methode zur Festlegung dieser Startwerte ist der Konstruktor – er wird automatisch beim Erzeugen eines Objektes aufgerufen.</p>
+</li>
+<li>
+<p>Ein Konstruktor besitzt daher auch nur IMPORTING-Parameter.</p>
+</li>
+<li>
+<p>Man unterscheidet instanzabhängige und klassenabhängige Konstruktoren, durch die im Definitionsteil zu benutzenden Sprachelemente METHODS bzw. CLASS-METHODS und durch ihre Namen <strong>constructor</strong> und <strong>class_constructor</strong>:</p>
+</li>
+<li>
+<p>Der Klassenkonstruktor wird beim ersten Zugriff auf ein Element der Klasse (Methode, Attribut, Ereignis, Objekt) aufgerufen und dient damit der Initialisierung der statischen Elemente der Klasse.</p>
+</li>
+<li>
+<p>Der (Instanz-)Konstruktor wird bei Erzeugung eines jeden Objektes (NEW, <em>CREATE OBJECT</em>) aufgerufen.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_schueler DEFINITION.
+  PUBLIC SECTION.
+    TYPES:
+      tv_name(30)    TYPE c,
+      tv_vorname(30) TYPE c,
+      tv_ort(30)     TYPE c,
+      tv_klasse(8)   TYPE c.
+
+    METHODS:
+      constructor  IMPORTING VALUE(iv_name)    TYPE tv_name
+                             VALUE(iv_vorname) TYPE tv_vorname
+                             VALUE(iv_ort)     TYPE tv_ort
+                             VALUE(iv_klasse)  TYPE tv_klasse,
+      ziehe_um       IMPORTING VALUE(iv_ort) TYPE tv_ort,
+      wechsle_klasse IMPORTING VALUE(iv_klasse) TYPE tv_klasse,
+      get_name    RETURNING VALUE(rv_name) TYPE tv_name,
+      get_ort     RETURNING VALUE(rv_ort) TYPE tv_ort,
+      get_klasse  RETURNING VALUE(rv_klasse) TYPE tv_klasse.
+  PRIVATE SECTION.
+    DATA:
+      mv_name(30)    TYPE c,
+      mv_vorname(20) TYPE c,
+      mv_ort         TYPE tv_ort,
+      mv_klasse      TYPE tv_klasse.
+ENDCLASS.
+CLASS lcl_schueler IMPLEMENTATION.
+  METHOD constructor.
+    mv_name = iv_name.
+    mv_vorname = iv_vorname.
+    mv_ort = iv_ort.
+    mv_klasse = iv_klasse.
+  ENDMETHOD.
+  METHOD ziehe_um.
+    "lokaler Definitionsbereich wäre hier möglich
+    mv_ort = iv_ort.
+  ENDMETHOD.
+  METHOD wechsle_klasse.
+    mv_klasse = iv_klasse.
+  ENDMETHOD.
+  METHOD get_name.
+    rv_name = mv_name.
+  ENDMETHOD.
+  METHOD get_ort.
+    rv_ort = mv_ort.
+  ENDMETHOD.
+  METHOD get_klasse.
+    rv_klasse = mv_klasse.
+  ENDMETHOD.
+ENDCLASS.
+
+DATA:
+  go_schueler1 TYPE REF TO lcl_schueler.
+
+START-OF-SELECTION.
+  go_schueler1 = NEW lcl_schueler(
+    iv_name    = 'Huber'
+    iv_vorname = 'Jonas'
+    iv_ort     = 'München'
+    iv_klasse  = 'FS11'
+  ).
+
+  WRITE:/ go_schueler1-&gt;get_name( ),
+          go_schueler1-&gt;get_ort( ),
+          go_schueler1-&gt;get_klasse( ).
+* Schüler zieht um
+  go_schueler1-&gt;ziehe_um( 'Plattling' ).
+* Schüler wechselt die Klasse
+  go_schueler1-&gt;wechsle_klasse( 'FS12' ).
+  WRITE:/ go_schueler1-&gt;get_name( ),
+         go_schueler1-&gt;get_ort( ),
+         go_schueler1-&gt;get_klasse( ).</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_klasse_mit_zugriff_auf_db_tabelle">1.5. Klasse mit Zugriff auf DB-Tabelle</h3>
+<div class="paragraph">
+<p>In SAP werden häufig Daten aus Datenbanktabellen benötigt.</p>
+</div>
+<div class="paragraph">
+<p>Zunächst benötigt man eine Basis-Klasse, in der sämtliche CRUD-Funktionen abgewickelt werden.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. CRUD</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Request</th>
+<th class="tableblock halign-left valign-top">Datenbankbefehl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>C</strong> reate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INSERT into DB-Tabelle</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>R</strong> ead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT from DB-Tabelle<br>
+Dabei gibt es zwei Varianten: einen Satz lesen oder mehrere Einträge lesen.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>U</strong> pdate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UPDATE DB-Tabelle</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>D</strong> elete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE from DB-Tabelle</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Die CRUD-Funktionen sollten immer als statische Methoden in eine globale Klasse ausgelagert werden. Dadurch sind Sie allgemein benutzbar.</p>
+</div>
+<div class="paragraph">
+<p>Die Prüfung auf Fehler bzw. fehlende Daten fehlt hier aus Vereinfachungsgründen noch (siehe dazu Kapitel <strong>Ausnahmen</strong>). Es fehlen außerdem Erfolgs-/Misserfolgsmeldungen.</p>
+</div>
+<div class="paragraph">
+<p><strong>Beispiel: Klasse PUPIL_CRUD</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="title">Einen Satz lesen</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS select_single
+    IMPORTING
+        VALUE(in_id)    TYPE z001_63_sid
+    RETURNING
+        VALUE(rs_pupil) TYPE z001_63_pupil.
+
+METHOD select_single.
+    SELECT SINGLE * FROM z001_63_pupil
+      INTO rs_pupil
+      WHERE id = in_id.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Mehrere/alle Sätze lesen</div>
+<p>Es können optional eine Klasse und/oder ein Ort zur Selektierung eingegeben werden.</p>
+</div>
+<div class="paragraph">
+<p>Damit die SELECT-Anweisung nicht mehrfach durchgeführt werden muss, wird die WHERE-Anweisung entsprechend der übergebenen Werte zusammengesetzt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS select_multiple
+    IMPORTING
+        VALUE(iv_class)  TYPE z001_63_cid OPTIONAL
+        VALUE(iv_city)   TYPE z001_63_city OPTIONAL
+    RETURNING
+        VALUE(rt_pupils) TYPE z001_63_tt_pupil.
+
+METHOD select_multiple.
+    DATA: lv_where TYPE string.
+    lv_where = ||.
+
+    IF iv_class IS NOT INITIAL.
+      lv_where = | { lv_where } AND cid = { iv_class } |.
+    ENDIF.
+    IF iv_city IS NOT INITIAL.
+      lv_where =  | { lv_where } AND city = '{ iv_city }' |.
+    ENDIF.
+
+    lv_where = replace( val = lv_where
+                        sub = 'AND'
+                        with = ''
+                        occ = 1 ).
+
+    SELECT * FROM z001_63_pupil
+      INTO TABLE rt_pupils
+      WHERE (lv_where).
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Anweisung</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>lv_where = | { lv_where } AND cid = { iv_class } |.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>entspricht einer <strong>Stringverkettung</strong>. Das Pipeline-Zeichen startet bzw. beendet den String. Alle Werte in geschweiften Klammern sind Variablen. Die anderen Zeichen werden genau so übernommen wie sie dastehen.</p>
+</div>
+<div class="paragraph">
+<p>In obiger Methode wird mit einer dynamischen WHERE-Klausel gearbeitet. Dynamische Felder müssen bei Verwendung in Klammern gesetzt werden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Einen Satz einfügen</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS insert
+    IMPORTING
+        VALUE(is_pupil) TYPE z001_63_pupil.
+
+METHOD insert.
+    DATA:   ln_id    TYPE z001_63_pupil-id,
+            ls_pupil TYPE z001_63_pupil.
+
+    " Plausibilitätsprüfung erforderlich, wurde aus Vereinfachungsgründen weggelassen
+    SELECT MAX( id ) FROM z001_63_pupil
+        INTO ln_id.
+    ln_id = ln_id + 1.
+
+    MOVE-CORRESPONDING is_pupil TO ls_pupil.
+    ls_pupil-id = ln_id.
+    INSERT z001_63_pupil FROM ls_pupil.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Einen Satz ändern</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS update
+    IMPORTING
+        VALUE(is_pupil) TYPE z001_63_pupil.
+
+METHOD update.
+    " Plausibilitätsprüfung erforderlich, wurde aus Vereinfachungsgründen weggelassen
+    UPDATE z001_63_pupil FROM is_pupil.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Einen Satz löschen</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS delete
+    IMPORTING
+        VALUE(in_id) TYPE z001_63_pupil-id.
+
+DELETE FROM z001_63_pupil
+    WHERE id = in_id.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Methoden der CRUD-Basis-Klasse können nun in anderen Klassen sowie im Hauptprogramm verwendet werden.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Beispiel: Klasse PUPIL</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS zkoe1_gc_pupil DEFINITION
+  PUBLIC FINAL CREATE PUBLIC .
+  PUBLIC SECTION.
+    METHODS constructor
+      IMPORTING
+        VALUE(in_id) TYPE z001_63_sid
+      RAISING
+        zcx_001_pupil .
+    METHODS get_pupil
+      RETURNING
+        VALUE(rs_pupil) TYPE z001_63_pupil .
+    METHODS get_age
+      RETURNING
+        VALUE(rn_age) TYPE i .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+    DATA ms_pupil TYPE z001_63_pupil .
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS zkoe1_gc_pupil IMPLEMENTATION.
+METHOD constructor.
+    ms_pupil = zkoe1_gc_pupil_crud=&gt;select_single( in_id = in_id ).
+ENDMETHOD.
+METHOD get_age.
+    rn_age = ( sy-datum - ms_pupil-birthday ) / '365.25'.
+ENDMETHOD.
+METHOD get_pupil.
+    rs_pupil = ms_pupil.
+ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Verwendung im Hauptprogramm</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">PARAMETERS: p_id TYPE z001_63_sid.
+DATA: go_pupil TYPE REF TO zkoe1_gc_pupil.
+START-OF-SELECTION.
+    go_pupil = NEW zkoe1_gc_pupil( in_id = p_id ).
+    DATA(gs_pupil) = go_pupil-&gt;get_pupil( ).
+    DATA(gn_age)   = go_pupil-&gt;get_age( ).
+    WRITE:/ gs_pupil-id, gs_pupil-surname, gs_pupil-name, gn_age.</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausgabe2ABAP.png" alt="Ausgabe Schülerdaten">
+</div>
+<div class="title">Figure 4. Zugriff auf Schülerdaten über CRUD-Klasse</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klassenbasierte_ausnahmen">2. Klassenbasierte Ausnahmen</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prinzip">2.1. Prinzip</h3>
+<div class="paragraph">
+<p><strong>Ausnahmeklassen:</strong> Tritt in einem Programm eine Ausnahmesituation auf, wird ein Ausnahmeobjekt erzeugt. Dieses beschreibt über detaillierte Informationen die Fehlersituation.</p>
+</div>
+<div class="ulist">
+<div class="title">Es gelten folgende Regeln:</div>
+<ul>
+<li>
+<p>Alle Ausnahmeklassen sind Erben der gemeinsamen Oberklasse CX_ROOT und einer ihrer Unterklassen CX_NO_CHECK, CX_DYNAMIC_CHECK und CX_STATIC_CHECK. Die Zuordnung von Ausnahmeklassen zu einem dieser drei Pfade der Vererbungshierarchie bestimmt die Art, in der die zugehörigen Ausnahmen propagiert werden. (Dies wird im Folgenden noch näher erläutert werden.)</p>
+</li>
+<li>
+<p>Alle Ausnahmeklassen müssen mit dem Präfix CX_ beginnen. Sie werden in der Regel global mit dem Class Builder der ABAP Workbench definiert, es können aber auch lokale Ausnahmeklassen definiert werden.</p>
+</li>
+<li>
+<p>Es gibt zwei vordefinierte Methoden in der Wurzelklasse CX_ROOT, die von den anderen Klassen geerbt werden. Die Methode GET_SOURCE_POSITION gibt den Programmnamen, den Namen eines eventuellen Include-Programms und die Zeilennummer der Auslösestelle zurück. Die Methode GET_TEXT gibt einen Ausnahmetext einer Klasse als Zeichenkette zurück. Dabei können einer Klasse mehrere Texte zugeordnet werden. Durch die Übergabe einer entsprechenden Kennung an den IMPORTING-Parameter TEXTID des Instanzkonstruktors kann beim Auslösen einer Ausnahme der zu verwendende Ausnahmetext festgelegt werden.</p>
+</li>
+<li>
+<p>Alle Ausnahmeklassen erben das Attribut KERNEL_ERRID von CX_ROOT. In diesem Attribut wird der Name des zugehörigen Laufzeitfehlers gespeichert, wenn die Ausnahme von der Laufzeitumgebung ausgelöst wurde, beispielsweise COMPUTE_INT_ZERODIVIDE bei einer Division durch null. Falls die Ausnahme nicht behandelt wird, kommt es zu genau diesem Laufzeitfehler.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausnahmen1ABAP.png" alt="Ausnahmen">
+</div>
+<div class="title">Figure 5. Übersicht über die Vererbungsstruktur der Ausnahmeklassen</div>
+</div>
+<div class="paragraph">
+<p>Im Hauptprogramm muss ein TRY_CATCH-Block erzeugt werden, welcher den/die Fehler abfängt.</p>
+</div>
+<div class="ulist">
+<div class="title">Vorgehen:</div>
+<ul>
+<li>
+<p>Der TRY-Block enthält das Anwendungscoding, dessen Ausnahmen behandelt werden sollen. Wenn im TRY-Block eine Ausnahme auftritt, sucht das System zuerst nach einer CATCH-Anweisung der gleichen TRY-ENDTRY-Struktur und dann von innen nach außen nach einer CATCH-Anweisung in eventuell umschließenden TRY-ENDTRY-Strukturen, die das Ereignis behandelt und verzweigt gegebenenfalls zu diesem Behandler. Falls kein Behandler gefunden wird, die TRY-ENDTRY-Struktur aber innerhalb einer Prozedur steht, versucht das System, die Ausnahme an den Aufrufer zu propagieren. (Dies wird später noch näher erläutert werden.)</p>
+</li>
+<li>
+<p>Ein CATCH-Block enthält den Ausnahmebehandler, der ausgeführt wird, wenn eine bestimmte Ausnahme im TRY-Block der gleichen TRY-ENDTRY-Struktur aufgetreten ist. Hinter CATCH können beliebig viele Ausnahmeklassen angegeben werden. Dadurch wird ein Ausnahmebehandler für alle angegebenen Ausnahmeklassen und deren Unterklassen definiert. Das System durchsucht nach dem Auftreten einer Ausnahme die aufgeführten Ausnahmebehandler in der angegebenen Reihenfolge. Der erste Ausnahmebehandler, dessen CATCH-Anweisung die entsprechende Ausnahmeklasse oder eine ihrer Oberklassen enthält, wird ausgeführt.</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_verwendung_von_bestehenden_fehlerklassen">2.2. Verwendung von bestehenden Fehlerklassen</h3>
+<div class="paragraph">
+<p>Im Folgenden werden häufig auftretende zwei Fehler mit Hilfe von TRY-CATCH abgefangen.</p>
+</div>
+<div class="paragraph">
+<p>1) Division durch Null: Dazu gibt es die Fehlerklasse <strong>cx_sy_zerodivide</strong>. Es kann ein passender Fehlertext ausgegeben werden.</p>
+</div>
+<div class="paragraph">
+<p>2) Überlauf: Ergebnisfeld ist zu klein für das Rechenergebnis. Die Fehlerklasse <strong>cx_sy_arithmetic_error</strong> fängt diesen Fehler ab. Alternativ zu 1) wird das Fehlerobjekt (<em>ro_exc</em>) geholt und der hinterlegte Text (<em>get_text()</em>) ausgegeben.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">PARAMETERS: p_zahl1 TYPE i,
+            p_zahl2 TYPE i,
+            p_op(1) TYPE c.
+DATA: gn_erg TYPE i.
+
+START-OF-SELECTION.
+  TRY.
+      CASE p_op.
+        WHEN '/'.
+          gn_erg = p_zahl1 / p_zahl2.
+        WHEN 'P'.
+          gn_erg = p_zahl1 ** p_zahl2.
+      ENDCASE.
+      WRITE: gn_erg.
+    CATCH cx_sy_zerodivide.
+      MESSAGE 'Division  durch 0 nicht erlaubt!' TYPE 'S' DISPLAY LIKE 'E'.
+    CATCH cx_sy_arithmetic_error INTO DATA(go_exc).
+      MESSAGE go_exc-&gt;get_text( ) TYPE 'S' DISPLAY LIKE 'E'.
+  ENDTRY.</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_eigene_ausnahmeklassen">2.3. Eigene Ausnahmeklassen</h3>
+<div class="sect3">
+<h4 id="_vorbereitung">2.3.1. Vorbereitung</h4>
+<div class="paragraph">
+<p>Da die Meldungen immer gleich und übersetzbar sein sollen, müssen sie zunächst in einer Nachrichtenklasse mit den entsprechenden Platzhaltern definiert werden.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Nachrichtenklasse.png" alt="02Nachrichtenklasse">
+</div>
+<div class="title">Figure 6. Nachrichtenklasse ZKOE1_MK_PUPIL</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_anlegen">2.3.2. Anlegen</h4>
+<div class="paragraph">
+<p>Legen Sie im Class Builder eine Ausnahmeklasse an.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausnahmeklasse1ABAP.png" alt="Ausnahmeklasse">
+</div>
+<div class="title">Figure 7. Anlegen Ausnahmeklasse</div>
+</div>
+<div class="paragraph">
+<p>Es werden automatisch mehrere Methoden aus der Oberklasse <em>CX_STATIC_CHECK</em> ererbt.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausnahmeklasse2ABAP.png" alt="Ererbte Methoden">
+</div>
+<div class="title">Figure 8. Ererbte Methoden</div>
+</div>
+<div class="paragraph">
+<p>Hinterlegen Sie außerdem im Reiter <strong>Eigenschaften</strong> den Bezug zur Nachrichtenklasse.</p>
+</div>
+<div class="paragraph">
+<p>Im Reiter <strong>Attribute</strong> sind für sämtliche Platzhalter geeignete Attibute anzulegen, i.d.R sind diese öffentlich.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Attribute.png" alt="02Attribute">
+</div>
+<div class="title">Figure 9. Attribute</div>
+</div>
+<div class="paragraph">
+<p>Wechseln Sie in den Reiter <strong>Texte</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Automatisch wurde die Standardausnahme ZCX_001_PUPIL angelegt.</p>
+</div>
+<div class="paragraph">
+<p>Hier wird unter <em>Ausnahme-ID</em> zunächst eine geeignete Ausnahme angelegt, z.B. PUPIL_NOT_FOUND.
+Anschließend wählen Sie <em>Nachrichtentext</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausnahmeklasse3ABAP.png" alt="Texte">
+</div>
+<div class="title">Figure 10. Fehlertexte</div>
+</div>
+<div class="paragraph">
+<p>Die Meldungstexte sind aus der Nachrichtenklasse zu entnehmen und die entsprechenden Attribute zuzuweisen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Ausnahmeklasse4ABAP.png" alt="02Ausnahmeklasse4ABAP">
+</div>
+<div class="title">Figure 11. Attribute einer Ausnahmeklasse zu einer Nachricht zuweisen</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verwenden_der_ausnahmeklasse">2.3.3. Verwenden der Ausnahmeklasse</h4>
+<div class="paragraph">
+<p>Die Ausnahme <em>NO_PUPIL_FOUND</em> soll ausgelöst werden, wenn eine Schüler-ID übergeben wurde, die nicht in der DB-Tabelle enthalten ist.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS select_single
+    IMPORTING
+        VALUE(in_id)    TYPE z001_63_sid
+    RETURNING
+        VALUE(rs_pupil) TYPE z001_63_pupil
+    RAISING
+        zcx_001_pupil .
+
+METHOD select_single.
+    SELECT SINGLE * FROM z001_63_pupil
+      INTO rs_pupil
+      WHERE id = in_id.
+
+    IF sy-subrc &lt;&gt; 0.
+      RAISE EXCEPTION TYPE zcx_001_pupil
+        EXPORTING
+          textid = zcx_001_pupil=&gt;no_pupil_found
+          sid = in_id.
+    ENDIF.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ähnlich kann auch in den anderen CRUD-Methoden vorgegangen werden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ausnahme_weitergeben_und_abfangen">2.3.4. Ausnahme weitergeben und abfangen</h4>
+<div class="paragraph">
+<p>Da die Methode in einer anderen Klasse aufgerufen wird, muss die ausgelöste Ausnahme weitergegeben werden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">METHODS constructor
+    IMPORTING
+        VALUE(in_id) TYPE z001_63_sid
+    RAISING
+        zcx_001_pupil .
+
+METHOD constructor.
+    ms_pupil = zkoe1_gc_pupil_crud=&gt;select_single( in_id = in_id ).
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Im Hauptprogramm wird dann die Ausnahme abgefangen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">TRY.
+    go_pupil = NEW zkoe1_gc_pupil( in_id = p_id ).
+    DATA(gs_pupil) = go_pupil-&gt;get_pupil( ).
+    data(gn_age)   = go_pupil-&gt;get_age( ).
+    WRITE:/ gs_pupil-id, gs_pupil-surname, gs_pupil-name, gn_age.
+CATCH zcx_001_pupil INTO DATA(go_exc). " Ausnahmen Schüler
+    MESSAGE s001(zkoe1_mk_pupil).
+ENDTRY.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>HINWEIS</strong>:<br>
+Zusätzlich können über das Fehlerobjekt <em>go_exc</em> auch andere Informationen abgefragt werden. Über die Methode <em>get_source_position()</em> können Programmname, Include und Zeile ausgegeben werden.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_assoziation_mit_anderen_klassen">3. Assoziation mit anderen Klassen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assoziation ist ein Modellelement der UML und  bedeutet, dass eine Verbindung zwischen mindestens zwei Klassen besteht.</p>
+</div>
+<div class="sect2">
+<h3 id="_beziehung_11">3.1. Beziehung 1:1</h3>
+<div class="paragraph">
+<p><strong>Ein Schüler gehört genau einer Klasse an.</strong><br>
+Dazu wird zunächst die Klasse CLASS_CRUD angelegt. Zur Vereinfachung wurde die Fehlerbehandlung weggelassen.
+Außerdem wurden nur zwei Methoden (<em>select_single</em> und <em>select_multiple</em>) implementiert.</p>
+</div>
+<div class="listingblock">
+<div class="title">CLASS_CRUD</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">PUBLIC SECTION.
+    CLASS-METHODS select_single
+      IMPORTING
+        VALUE(in_id)    TYPE z001_63_class-id
+      RETURNING
+        VALUE(rs_class) TYPE z001_63_class .
+    CLASS-METHODS select_multiple
+      EXPORTING
+        VALUE(et_class) TYPE z001_63_tt_class .
+    CLASS-METHODS update
+      IMPORTING
+        VALUE(is_class) TYPE z001_63_class .
+
+METHOD select_single.
+    SELECT SINGLE * FROM z001_63_class
+      INTO rs_class
+      WHERE id = in_id.
+ENDMETHOD.
+
+METHOD select_multiple.
+    SELECT * FROM z001_63_class
+      INTO TABLE et_class.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Um Klassenobjekte erzeugen zu können, wird die Klasse CLASS angelegt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">PUBLIC SECTION.
+    METHODS constructor
+      IMPORTING
+        VALUE(in_id) TYPE z001_63_class-id .
+    METHODS get_data
+      RETURNING
+        VALUE(rs_class) TYPE z001_63_class .
+PROTECTED SECTION.
+PRIVATE SECTION.
+    DATA ms_class TYPE z001_63_class .
+
+METHOD constructor.
+    ms_class = zkoe1_gc_class_crud=&gt;select_single( in_id = in_id ).
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Klassen PUPIL und CLASS stehen über die Klassen-Id in Verbindung.</p>
+</div>
+<div class="paragraph">
+<p>Ein Schüler gehört genau einer Klasse an.</p>
+</div>
+<div class="paragraph">
+<p>Erweitern Sie die Klasse PUPIL und holen Sie das aktuelle Objekt aus CLASS. Legen Sie die Methode <em>get_classobj()</em> an.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">METHODS get_classobj
+    RETURNING
+        VALUE(ro_class) TYPE REF TO zkoe1_gc_class .
+
+METHOD get_classobj.
+    ro_class = NEW zkoe1_gc_class( in_id = ms_pupil-cid ).
+ENDMETHOD.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_beziehung_1n">3.2. Beziehung 1:n</h3>
+<div class="paragraph">
+<p><strong>Eine Klasse hat mehrere Schüler.</strong><br>
+Möglich ist es auch, in der Klasse CLASS eine Assoziation zur Klasse PUPIL herzustellen.</p>
+</div>
+<div class="paragraph">
+<div class="title">Vorgehen:</div>
+<p><strong>1)  Der Konstruktor der Klasse PUPIL muss geändert werden.</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">METHODS constructor
+    IMPORTING
+        VALUE(in_id)    TYPE z001_63_sid OPTIONAL
+        VALUE(is_pupil) TYPE z001_63_pupil OPTIONAL .
+
+METHOD constructor.
+    IF is_pupil IS NOT INITIAL.
+      ms_pupil = is_pupil.
+    ELSE.
+      ms_pupil = zkoe1_gc_pupil_crud=&gt;select_single( in_id  ).
+    ENDIF.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2) In der Klasse CLASS ist eine Methode <em>get_pupilobj</em> zu erstellen, die sämtliche Schülerobjekte in einer internen Tabelle als EXPORTING-Parameter zurückgibt.</strong><br>
+Da bei Parameterübergaben ein Typ angegeben werden muss, ist dieser Typ zuvor in der PUBLIC SECTION anzulegen. Der Typ ist als Tabelle von Objekten zu definieren.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">TYPES:
+    tt_pupil_obj TYPE TABLE OF REF TO zkoe1_gc_pupil .
+
+METHODS get_pupilobjs
+    EXPORTING
+        VALUE(et_pupil) TYPE tt_pupil_obj .
+
+METHOD get_pupilobjs.
+    DATA(lt_pupil) = zkoe1_gc_pupil_crud=&gt;select_multiple(
+                       iv_class = ms_class-id
+                     ).
+    LOOP AT lt_pupil ASSIGNING FIELD-SYMBOL(&lt;fs_pupil&gt;).
+      DATA(lo_pupil) = NEW zkoe1_gc_pupil(
+        is_pupil = &lt;fs_pupil&gt;
+      ).
+      APPEND lo_pupil TO et_pupil.
+    ENDLOOP.
+ENDMETHOD.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Erklärung:</strong><br>
+Alle Schüler der Klasse werden mit der Methode <em>select_multiple()</em> geholt und in der lokalen Tabelle <em>lt_pupil</em> gespeichert. <br>
+Über diese Tabelle wird geloopt und pro Eintrag ein neues Pupil-Objekt angelegt. Übergabeparameter ist jetzt die komplette Struktur, was bewirkt, dass der Satz nicht nochmals in der DB gelesen wird, sondern gleich ein Objekt angelegt wird.<br>
+Das angelegte Objekt wird in der Tabelle <em>et_pupil</em> angehängt.</p>
+</div>
+<div class="paragraph">
+<p><strong>3) Im Hauptprogramm kann dann folgendermaßen zugegriffen werden:</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">PARAMETERS: p_cid TYPE z001_63_class-id.
+
+START-OF-SELECTION.
+  DATA(go_class) = NEW zkoe1_gc_class( in_id = p_cid ).
+  WRITE: / go_class-&gt;get_data( )-shortname, go_class-&gt;get_data( )-id.
+  go_class-&gt;get_pupilobjs(
+    IMPORTING
+      et_pupil = DATA(gt_pupil)
+  ).
+  LOOP AT gt_pupil ASSIGNING FIELD-SYMBOL(&lt;fs_pupil&gt;).
+    WRITE:/ &lt;fs_pupil&gt;-&gt;get_pupil( )-surname,
+            &lt;fs_pupil&gt;-&gt;get_pupil( )-name,
+            &lt;fs_pupil&gt;-&gt;get_age( ).
+  ENDLOOP.</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02Assoziation1Abap.png" alt="CLASS-PUPIL">
+</div>
+<div class="title">Figure 12. Ergebnis Assoziation CLASS - PUPIL</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vererbung">4. Vererbung</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Vererbung:</strong>  &#8230;&#8203; INHERITING FROM &#8230;&#8203;.</p>
+</div>
+<div class="paragraph">
+<p>&#8594; Vermeidung von Redundanzen zwischen Objekten durch Herausfiltern gemeinsamer Attribute und Verhaltensformen (Generalisierung) und Einführen von Erweiterungen (Spezialisierung).</p>
+</div>
+<div class="paragraph">
+<p>&#8594; Damit kann Polymorphismus bzw. das Überschreiben von Methoden angewendet werden.</p>
+</div>
+<div class="paragraph">
+<p>&#8594; Ein abgeleiteter Objekttyp (=Subtyp) beinhaltet automatisch alle Attribute und Methoden des <strong>öffentlichen</strong> und <strong>geschützten</strong> Sichtbarkeitsbereichs des Supertyps, von dem er abgeleitet wurde.</p>
+</div>
+<div class="paragraph">
+<p>&#8594; SAP unterstützt (z.Zt.) ausschließlich Vererbung in einer Linie: ein Subtyp kann nur von einem Supertypen abgeleitet werden, nicht von mehreren.</p>
+</div>
+<div class="paragraph">
+<p>&#8594; Damit lässt sich ein Baum aufbauen, dessen Wurzel eine (leere) Klasse OBJECT ist, von der alle Klassen in ABAP implizit erben.</p>
+</div>
+<div class="paragraph">
+<p>&#8594; Zu den ererbten Attributen können neue Attribute ergänzt werden, ererbte Methoden können überschrieben und/oder durch zusätzliche Methoden ergänzt werden.</p>
+</div>
+<div class="sect2">
+<h3 id="_unterklassen_methoden_neu_definieren_redefinition">4.1. Unterklassen: Methoden neu definieren: REDEFINITION</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Im Standard gilt: die von Oberklassen geerbten Komponenten können in einer Unterklasse weder entfernt noch geändert werden.</p>
+</li>
+<li>
+<p>Mit dem Zusatz REDEFINITION der Anweisung METHODS können die von den Oberklassen geerbten Instanzmethoden in ihrer Funktionalität neu definiert werden.</p>
+</li>
+<li>
+<p>Derart deklarierte Methoden „verdecken“ die gleichnamigen Methoden der Oberklassen.</p>
+</li>
+<li>
+<p>Diese werden dort aber nicht verändert, sondern bleiben bei ihren Klassen bestehen.</p>
+</li>
+<li>
+<p>Eine verdeckte (= verschattete) Methode lässt sich in der redefinierten Methode mit der Pseudoreferenz SUPER&#8594; ansprechen, z.B. um die dort hinterlegte Funktionalität zu ergänzen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Vorgehensweise:</strong><br>
+Die Parameterliste für die redefinierte Methode wird der Superklasse entnommen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vererbung_und_konstruktoren">4.2. Vererbung und Konstruktoren</h3>
+<div class="paragraph">
+<p>Besonderheit einer Redefinition: Methode Constructor:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mit CREATE OBJECT wird der Instanzkonstruktor der passenden Klasse aufgerufen.</p>
+</li>
+<li>
+<p>Bekanntlich erbt eine Subklasse alle sichtbaren Komponenten (public und protected) der Superklasse.</p>
+</li>
+<li>
+<p>Wenn der Konstruktor für eine Subklasse aufgerufen wird, müssen somit auch die (ererbten) Attribute der Superklasse versorgt werden.</p>
+</li>
+<li>
+<p>Daher muss der Instanz-Konstruktor einer Unterklasse einen Aufruf
+SUPER&#8594;CONSTRUCTOR( ) enthalten; ist dort ein entsprechender Konstruktor nicht definiert, sorgt SAP für eine richtige Initialisierung.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_polymorphie">4.3. Polymorphie</h3>
+<div class="paragraph">
+<p><strong>Statischer und dynamischer Typ</strong><br>
+Der <strong>statische Typ</strong> einer Referenzvariablen <em>oref</em> ist der Typ, der bei der Deklaration hinter <em>… oref TYPE REF TO class …</em> angegeben wird. Der statische Typ liegt wie bei allen Datenobjekten während der gesamten Laufzeit eines Programms fest.</p>
+</div>
+<div class="paragraph">
+<p>Der <strong>dynamische</strong> Typ einer Referenzvariablen ist die Klasse des Objekts, auf das die Referenzvariable gerade zeigt. Dieser ist veränderlich. Die Referenzvariable erhält ihren dynamischen Typ über Zuweisungen oder Parameterübergaben.</p>
+</div>
+<div class="paragraph">
+<p><strong>Statischer und dynamischer Typ müssen nicht gleich sein.</strong></p>
+</div>
+<div class="paragraph">
+<p>Der statische Typ ist immer genereller oder gleich dem dynamischen Typ. Das bedeutet: Der statische Typ ist eine Klasse. Der dynamische Typ kann die gleiche Klasse oder eine ihrer Unterklassen sein.</p>
+</div>
+<div class="paragraph">
+<p><strong>Zuweisungen zwischen Referenzvariablen:</strong><br>
+Nach einer Zuweisung zwischen Referenzvariablen zeigen beide Referenzvariablen auf das gleiche Objekt.</p>
+</div>
+<div class="paragraph">
+<p>Es gibt zwei Fälle:<br>
+1)	Statischer Typ der Zielvariablen ist genereller oder gleich dem statischen Typ der Quellvariablen:
+Diese Art der Zuweisung wird <strong>Up Cast</strong>  oder <strong>Widening Cast</strong> genannt. Man bewegt sich im Vererbungsbaum nach oben, die Zielvariable kann im Vergleich zur Quellvariablen mehr dynamische Typen annehmen.<br></p>
+</div>
+<div class="paragraph">
+<p>Beispiel:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">go_super TYPE REF TO superclass,
+go_sub TYPE REF TO subclass.
+…
+go_sub = NEW subclass( ).
+go_super = go_sub.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2)	Statischer Typ der Zielvariablen ist spezieller dem statischen Typ der Quellvariablen:
+Diese Art der Zuweisung wird <strong>Down Cast</strong>  oder <strong>Narrowing Cast</strong> genannt.  Man bewegt sich im Vererbungsbaum nach unten, die Zielvariable kann im Vergleich zur Quellvariablen weniger dynamische Typen annehmen.</p>
+</div>
+<div class="paragraph">
+<p>Beispiel:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">go_ref1 TYPE REF TO object,
+go_ref2 TYPE REF TO class.
+…
+*für die Zuweisung wird der Casting-Operator ?= benutzt
+go_ref2 ?=go_ref1.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Polymorphie(= Vielgestaltlichkeit, viele Formen):</strong><br>
+Unterschiedlich implementierte Methoden, die zu verschiedenen Objekten verschiedener Klassen gehören, können mit dem gleichen Bezeichner über dieselbe Schnittstelle angesprochen werden.  Referenzvariablen können unterschiedliche dynamische Typen annehmen.</p>
+</div>
+<div class="paragraph">
+<p>Der Verwender von verschiedenen Klassen kann dies über einheitliche Schnittstellen erreichen, d.h. die Redefinition einer Methode in einer Unterklasse muss die Semantik der vorherigen Implementierung erhalten (Pseudoreferenz  super verwenden).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_abstrakte_und_finale_klassen">4.4. Abstrakte und finale Klassen</h3>
+<div class="paragraph">
+<p><strong>Abstrakte Klassen</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Soll eine Klasse nur als Vorlage benutzt werden, kann diese als abstract definiert werden.<br>
+CLASS … DEFINITION ABSTRACT.</p>
+</li>
+<li>
+<p>Es ist keine Erzeugung von Objekten möglich. Von abstrakten Klassen können konkrete Unterklassen abgeleitet werden, von denen Objekte erzeugt werden können.</p>
+</li>
+<li>
+<p>Instanzmethoden können auch als abstract definiert werden.<br>
+METHODS meth ABSTRACT.<br>
+Implementierung in eigener Klasse nicht möglich, Anlegen nur in abstrakten Klassen möglich.
+Die Implementierung ist erst in einer konkreten Unterklasse möglich. Hier wird der Mechanismus der Methodenredefinition verwendet. Es darf aber die Pseudoreferenz super nicht benutzt werden.</p>
+</li>
+<li>
+<p>Es können sowohl konkrete als auch abstrakte Methoden definiert werden.</p>
+</li>
+<li>
+<p>Da Mehrfachvererbung nicht unterstützt wird, ist die Verwendung der Abstraktion nur auf die Unterklassen eines bestimmten Knoten des Vererbungsbaumes begrenzt.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Finale Klassen</strong></p>
+</div>
+<div class="paragraph">
+<p>Der Zusatz FINAL schützt eine Klasse/Methode vor Spezialisierung. Hier sind keine Unterklassen und keine Redefinition möglich.</p>
+</div>
+<div class="paragraph">
+<p>Klassendefinition: CLASS … DEFINITION FINAL.</p>
+</div>
+<div class="paragraph">
+<p>Sinnvoll ist dies, wenn an einer Klasse später noch Änderungen durchgeführt werden sollen. Es wird vermieden, dass Unterklassen syntaktisch oder semantisch inkorrekt werden.
+Alle Instanzmethoden der Klasse sind automatisch final.</p>
+</div>
+<div class="paragraph">
+<p>In einer nicht-finalen Klasse können einzelne Instanzmethoden als final deklariert werden.<br>
+METHODS meth FINAL.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_beispiel">4.5. Beispiel</h3>
+<div class="paragraph">
+<p>Die allgemeine Klasse <em>employees</em>  umfasst alle  Angestellten der Schule. Dazu gehören Lehrer und Angestellte in der Administration. Weitere Angestellte gibt es nicht.<br>
+Jeder Angestellte der Schule hat einen Namen, einen Vornamen, eine Büronummer und einen Status.</p>
+</div>
+<div class="paragraph">
+<p>Alle Angestellten können ihre Daten abrufen uns ausgeben (<em>display_data()</em>).<br>
+Jeder Angestellte der Schule kann seine Arbeitsstunden ändern (<em>change_working_hours()</em>).</p>
+</div>
+<div class="paragraph">
+<p><strong>Lehrer</strong> haben eine Normalarbeitszeit von 24 Unterrichtsstunden.<br>
+Es ist aber möglich, dass Lehrer weniger Stunden arbeiten. Die tatsächliche Arbeitszeit ist als weiteres Attribut zu übergeben.</p>
+</div>
+<div class="paragraph">
+<p>Jeder Lehrer darf maximal 27 Stunden arbeiten. Größere Abweichungen sind nicht erlaubt.</p>
+</div>
+<div class="paragraph">
+<p><strong>Angestellte</strong> in der Administration haben eine Normalarbeitszeit von 40 Stunden, können aber ihre Arbeitszeit +-5 Stunden verändern. Größere/kleinere Abweichungen sind nicht erlaubt.<br>
+Angestellte können außerdem Urlaub nehmen. Daher sind die aktuell freien Urlaubstage als Attribut zu übergeben.<br>
+Urlaub kann genommen werden (<em>take_vacation()</em>), wenn die gewünschten Urlaubstage möglich sind.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="02ImagesAbapObjects/02KlassendiagrammEmployeeAbap.png" alt="Employee">
+</div>
+<div class="title">Figure 13. Klassendiagramm Employee</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Das Klassendiagramm soll nun detailliert und umgesetzt werden.</p>
+</div>
+<div class="paragraph">
+<p><strong>Oberklasse</strong><br>
+Zunächst wird die Klasse <em>employees</em> mit ihren öffentlichen und privaten Komponenten definiert, die auch für davon abgeleitete Klassen gelten.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_employee DEFINITION ABSTRACT.
+  PUBLIC SECTION.
+    TYPES: BEGIN OF ts_employee,
+             surname(30) TYPE c,
+             name(20)    TYPE c,
+             office_nr   TYPE i,
+             status(1)   TYPE c,
+           END OF ts_employee.
+    METHODS:  constructor IMPORTING VALUE(is_employee) TYPE ts_employee,
+      display_data,
+      change_working_hours ABSTRACT IMPORTING VALUE(in_difference) TYPE i.
+  PROTECTED SECTION.
+    DATA: ms_employee TYPE ts_employee.
+ENDCLASS.
+
+CLASS lcl_employee IMPLEMENTATION.
+  METHOD constructor.
+    ms_employee = is_employee.
+  ENDMETHOD.
+  METHOD display_data.
+    WRITE:/ ms_employee-surname,
+            ms_employee-name,
+            ms_employee-office_nr,
+            ms_employee-status.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Erläuterung:</strong><br>
+Die einzelnen Attribute (Nachname, Vorname, usw.) werden in der Typvariable <em>ts_employee</em> definiert.<br>
+Die Oberklasse ist <em>abstract</em>, da die Klasse nur als Vorlage dienen soll.<br>
+Die Methode <em>change_working_hours</em> ist ebenfalls <em>abstract</em>. Sie wird erst in den Unterklassen spezifiziert.<br>
+HINWEIS: Die Klasse kann zunächst ohne den Zusatz <em>abstract</em> definiert werden, um die Funktionalität der Klasse sowie ihre Methoden zu testen.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Unterklassen</strong><br>
+Im Anschluss daran werden die einzelnen Unterklassen implementiert.</p>
+</div>
+<div class="paragraph">
+<p><strong><em>lcl_teacher</em></strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_teacher DEFINITION INHERITING FROM lcl_employee.
+  PUBLIC SECTION.
+    METHODS: constructor IMPORTING VALUE(is_employee)      TYPE ts_employee
+                                   VALUE(in_no_of_lessons) TYPE i,
+      display_data REDEFINITION,
+      change_working_hours REDEFINITION.
+  PRIVATE SECTION.
+    CLASS-DATA: gn_no_of_lessons TYPE i VALUE 24.
+    DATA: mn_no_of_lessons TYPE i.
+
+ENDCLASS.
+
+CLASS lcl_teacher IMPLEMENTATION.
+  METHOD constructor.
+    super-&gt;constructor( is_employee = is_employee ).
+    mn_no_of_lessons = in_no_of_lessons.
+  ENDMETHOD.
+
+  METHOD display_data.
+    super-&gt;display_data( ).
+    WRITE: mn_no_of_lessons.
+  ENDMETHOD.
+
+  METHOD change_working_hours.
+    IF ( mn_no_of_lessons + in_difference &gt; gn_no_of_lessons + 3 ) OR
+       ( mn_no_of_lessons + in_difference &lt; 2 ).
+      WRITE:/ 'Änderung der Stundenzahl nicht möglich!'.
+    ELSE.
+      WRITE:/ 'Ändere Stundenzahl ...'.
+      mn_no_of_lessons = mn_no_of_lessons + in_difference.
+    ENDIF.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong><em>Test im Hauptprogramm</em></strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">DATA: go_teacher       TYPE REF TO lcl_teacher,
+      gs_employee      TYPE lcl_employee=&gt;ts_employee,
+      gn_no_of_lessons TYPE i.
+
+gs_employee = VALUE lcl_employee=&gt;ts_employee(
+      surname       = 'Köckeis'
+      name          = 'Heidi'
+      office_nr     = 108
+      status        = 'A'
+  ).
+  gn_no_of_lessons = 24.
+  go_teacher = NEW lcl_teacher(
+  is_employee      = gs_employee
+  in_no_of_lessons = gn_no_of_lessons
+  ).
+  WRITE:/ 'Lehrer'.
+  ULINE.
+  go_teacher-&gt;display_data( ).
+  go_teacher-&gt;change_working_hours( in_difference = 2 ).
+  go_teacher-&gt;display_data( ).</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>lcl_administration</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_administration DEFINITION INHERITING FROM lcl_employee.
+  PUBLIC SECTION.
+    METHODS: constructor IMPORTING VALUE(is_employee)                TYPE ts_employee
+                                   VALUE(in_act_no_of_vacation_days) TYPE i,
+      display_data REDEFINITION,
+      change_working_hours REDEFINITION,
+      take_vacation IMPORTING VALUE(in_no_of_days) TYPE i.
+  PRIVATE SECTION.
+    DATA: mn_no_of_hours             TYPE i VALUE 40,
+          mn_act_no_of_vacation_days TYPE i.
+ENDCLASS.
+
+CLASS lcl_administration IMPLEMENTATION.
+  METHOD constructor.
+    super-&gt;constructor( is_employee = is_employee ).
+    mn_act_no_of_vacation_days = in_act_no_of_vacation_days.
+  ENDMETHOD.
+  METHOD display_data.
+    super-&gt;display_data( ).
+    WRITE: mn_no_of_hours, mn_act_no_of_vacation_days.
+  ENDMETHOD.
+  METHOD change_working_hours.
+    IF in_difference &gt;  5 OR in_difference &lt; -5.
+      WRITE:/ 'Änderung der Stundenzahl nicht möglich!'.
+    ELSE.
+      WRITE:/ 'Ändere Stundenzahl ...'.
+      mn_no_of_hours = mn_no_of_hours + in_difference.
+    ENDIF.
+  ENDMETHOD.
+  METHOD take_vacation.
+    IF mn_act_no_of_vacation_days - in_no_of_days &gt;= 0.
+      WRITE:/ 'Ändere Urlaubstage'.
+      mn_act_no_of_vacation_days = mn_act_no_of_vacation_days - in_no_of_days.
+    ELSE.
+      WRITE:/ 'zu wenig Urlaubstage vorhanden'.
+    ENDIF.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong><em>Hauptprogramm</em></strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">DATA: go_administration          TYPE REF TO lcl_administration,
+      gn_no_of_hours             TYPE i,
+      gn_act_no_of_vacation_days TYPE i.
+
+gs_employee = VALUE lcl_employee=&gt;ts_employee(
+      surname       = 'Meier'
+      name          = 'Gudrun'
+      office_nr     = 221
+      status        = 'A'
+  ).
+  gn_act_no_of_vacation_days = 14.
+  go_administration = NEW lcl_administration(
+    is_employee                = gs_employee
+    in_act_no_of_vacation_days = gn_act_no_of_vacation_days
+  ).
+
+  SKIP 2.
+  WRITE:/ 'Verwaltungsangestellte'.
+  ULINE.
+  go_administration-&gt;display_data( ).
+  go_administration-&gt;take_vacation( in_no_of_days = 14 ).
+  go_administration-&gt;change_working_hours( in_difference = 5 ).
+  go_administration-&gt;display_data( ).</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Polymorphie</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">DATA: gt_employees TYPE TABLE OF REF TO lcl_employee.
+
+  WRITE:/ 'Alle Objekt in einer gepufferten Tabelle speichern und ausgeben'.
+  WRITE:/ 'Polymorphie'.
+  ULINE.
+  APPEND go_teacher TO gt_employees.
+  APPEND go_administration TO gt_employees.
+  LOOP AT gt_employees ASSIGNING FIELD-SYMBOL(&lt;fs_employee&gt;).
+    &lt;fs_employee&gt;-&gt;change_working_hours( in_difference = -6 ).
+    &lt;fs_employee&gt;-&gt;display_data( ).
+  ENDLOOP.</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interfaces">5. Interfaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In ABAP ist keine Mehrfachvererbung möglich, d.h. eine Klasse kann nicht mehr als eine direkte Oberklasse besitzen. Auch in vielen anderen Programmiersprachen, wie z.B: Java ist dies nicht möglich.</p>
+</div>
+<div class="paragraph">
+<p>Es ist aber oft wünschenswert, allgemein gültige Schnittstellen definieren zu können, die gleichberechtigt in mehreren Klassen verwendbar sind.
+Solche Schnittstellen werden durch <strong>Interfaces</strong> verwirklicht. Dies sind eigenständig definierte Schnittstellen ohne Implementierung.</p>
+</div>
+<div class="paragraph">
+<p>Von Interfaces können keine Objekte erzeugt werden, sondern werden in Klassen eingebunden bzw. implementiert.</p>
+</div>
+<div class="paragraph">
+<p>Die Deklaration eines Interfaces unterscheidet sich kaum von der einer Klasse. Auch hier unterschiedet man globale und lokale Interfaces. Es gibt aber keine verschiedenen Sichtbarkeitsbereiche, da Interfacekomponenten nur in den öffentlichen Sichtbarkeitsbereich von Klassen eingebunden wurden.</p>
+</div>
+<div class="sect2">
+<h3 id="_interface_anlegen">5.1. Interface anlegen</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">INTERFACE zkoe1_vb_status
+  PUBLIC .
+
+  METHODS write .
+ENDINTERFACE.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interface_in_klasse_verwenden_und_implementieren">5.2. Interface in Klasse verwenden und implementieren</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS zkoe1_vb_counter DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES zkoe1_vb_status .
+
+    METHODS constructor
+      IMPORTING
+        VALUE(in_count) TYPE i .
+    METHODS increment .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+    DATA mn_count TYPE i .
+ENDCLASS.
+
+CLASS zkoe1_vb_counter IMPLEMENTATION.
+  METHOD constructor.
+    mn_count = in_count.
+  ENDMETHOD.
+
+  METHOD increment.
+    ADD 1 TO mn_count.
+  ENDMETHOD.
+
+  METHOD zkoe1_vb_status~write.
+    WRITE:/ 'Zähler in Klasse counter ist', mn_count.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interface_methoden_im_hauptprogramm">5.3. Interface-Methoden im Hauptprogramm</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">REPORT zkoe1_bv_interface.
+DATA(go_counter) = NEW zkoe1_vb_counter( 6 ).
+go_counter-&gt;increment( ).
+go_counter-&gt;zkoe1_vb_status~write( ).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_aliases">5.4. Aliases</h3>
+<div class="paragraph">
+<p>Die Methode aus dem Interface muss mit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">Klassenname~Methodenname</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>aufgerufen werden.</p>
+</div>
+<div class="paragraph">
+<p>Um diese Schreibarbeit zu vermeiden, bietet ABAP die Möglichkeit, Aliasnamen zu definieren, so dass ein syntaktisch einfacherer Zugriff möglich ist.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">INTERFACES zkoe1_vb_status .
+ALIASES write
+   FOR zkoe1_vb_status~write .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Jetzt ist auch ein verkürzter Aufruf möglich, was aber eine schlechtere Lesbarkeit bewirkt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">go_counter-&gt;write( ).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_statische_interfacekomponenten">5.5. Statische Interfacekomponenten</h3>
+<div class="paragraph">
+<p>Es ist möglich, statische Komponenten, wie Attribute und Methoden zu definieren. Auf die statischen Komponenten kann aber nicht mit dem Interfacenamen und den Klassenkomponentenselektor zu gegriffen werden. Einzige Ausnahme sind Konstanten.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">... intf=&gt;const ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die (anderen) statischen Komponenten gehören zu den statischen Komponenten jeder implementierenden Klasse, was bedeutet, dass statische Attribute je nach Klasse unterschiedliche Werte haben und in den einzelnen Klassen unterschiedlich implementiert werden können.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel: Im Interface wird die statische Variable gn_counter defininiert.</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">INTERFACE zkoe1_vb_status
+  PUBLIC .
+  CLASS-DATA gn_counter TYPE i .
+  METHODS write .
+ENDINTERFACE.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">In der Klasse zkoe1_vb_counter wird die statische Variable des Interfaces im Constructor verändert:</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap"> ZKOE1_VB_STATUS~GN_COUNTER = ZKOE1_VB_STATUS~GN_COUNTER + 1.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Im Hauptprogramm wird auf die statische Variable zugegriffen:</div>
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">WRITE:/'Anzahl:', zkoe1_vb_counter=&gt;zkoe1_vb_status~gn_counter.</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_events">6. Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In bestimmten Situationen kann es sinnvoll sein, dass regelmäßig anfallende Aufgaben automatisch durchgeführt werden.</p>
+</div>
+<div class="paragraph">
+<p>Eine sinnvolle Möglichkeit bietet das Ereigniskonzept, mit dem für Situationen Ereignisse definiert und ausgelöst werden können. Diese Ereignisse können dann verwendet werden, indem eine Behandlermethode bereitgestellt wird. Zur Laufzeit kann dann diese für die entsprechenden Objekte und Ereignisse registriert werden.</p>
+</div>
+<div class="paragraph">
+<p><strong>Übersicht über die einzelnen Bestandteile:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Auslöser</th>
+<th class="tableblock halign-left valign-top">Behandler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Definition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Klasse definiert Ereignis
+(events, classs-events) (1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Behandlerklasse definiert und implementiert Behandlermethode
+(class-)methods xyz for event … of…	(3)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zur Laufzeit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objekt oder Klasse löst das Ereignis aus (RAISE EVENT) (2)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Behandlerobjekt oder Behandlerklasse wird zur Laufzeit auf Ereignisse registriert (set handler) (4)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_ereignisse_deklarieren">6.1. Ereignisse deklarieren</h3>
+<div class="paragraph">
+<p>zu (1):</p>
+</div>
+<div class="paragraph">
+<p>Ereignisse werden im Deklarationsteil einer Klasse oder in einem Interface deklariert. Zum Deklarieren von Instanz-Ereignissen dient die Anweisung</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">EVENTS evt EXPORTING...VALUE(e1 e2 ...) TYPE type [OPTIONAL]..</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zum Deklarieren von statischen Ereignissen dient die Anweisung</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-EVENTS evt...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Beide Anweisungen haben die gleiche Syntax.
+Bei der Ereignisdeklaration können mit dem EXPORTING-Zusatz Parameter definiert werden, die der Auslöser des Ereignisses an den Behandler übergibt. Die Übergabe erfolgt dabei immer als Wert. Instanzereignisse enthalten immer den impliziten Parameter sender, der als Referenz auf die Klasse bzw. das Interface typisiert ist, in dem das Ereignis deklariert wird.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ereignisse_auslösen">6.2. Ereignisse auslösen</h3>
+<div class="paragraph">
+<p>zu (2):</p>
+</div>
+<div class="paragraph">
+<p>Für das Auslösen eines Ereignisses muss eine Klasse<br>
+- das Ereignis in ihrem Deklarationsteil deklarieren und<br>
+- das Ereignis in einer ihrer Methoden auslösen.</p>
+</div>
+<div class="paragraph">
+<p>Wenn eine Klasse ein Instanz-Ereignis enthält, kann jede Instanzmethode der Klasse das Ereignis auslösen. Ein statisches Ereignis kann von jeder Methode ausgelöst werden. Statische Methoden können aber nur statische Ereignisse auslösen. Zum Auslösen eines Ereignisses in Methoden dient die Anweisung<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">RAISE EVENT evt EXPORTING e1 = f1  e2 = f2 ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Für sämtliche nicht optionalen Formalparameter e1 e2 &#8230;&#8203; des Ereignisses müssen mit dem EXPORTING-Zusatz Aktualparameter f1 f2 &#8230;&#8203; angegeben werden. An den impliziten Parameter sender wird automatisch die Selbstreferenz <strong>me</strong> übergeben.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ereignisse_behandeln">6.3. Ereignisse behandeln</h3>
+<div class="paragraph">
+<p>zu (3):</p>
+</div>
+<div class="paragraph">
+<p>Ereignisse werden durch spezielle Methoden behandelt. Um ein Ereignis zu behandeln muss eine Methode<br>
+- als Ereignisbehandlermethode für dieses Ereignis deklariert sein und<br>
+- zur Laufzeit für das Ereignis registriert werden.</p>
+</div>
+<div class="paragraph">
+<p><strong>Ereignisbehandlermethoden deklarieren</strong><br>
+Jede Klasse kann Ereignisbehandlermethoden für Ereignisse anderer Klassen oder Interfaces enthalten. Ereignisbehandlermethoden für Ereignisse der gleichen Klasse sind natürlich auch möglich. Die Deklaration einer Ereignisbehandlermethode erfolgt über</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">METHODS meth FOR EVENT evt OF cif IMPORTING e1 e2 ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>für eine Instanzmethode und mit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS-METHODS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>entsprechend für eine statische Methode.<br>
+Dabei ist evt ein in Klasse bzw. Interface cif deklariertes Ereignis.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_ereignisbehandlermethoden_registrieren">6.4. Ereignisbehandlermethoden registrieren</h3>
+<div class="paragraph">
+<p>zu (4):</p>
+</div>
+<div class="paragraph">
+<p>Damit eine Ereignisbehandlermethode auf ein ausgelöstes Ereignis reagiert, d.h. sie wird zum Ereigniszeitpunkt ausgeführt, muss zur Laufzeit festgelegt werden, auf welche Auslöser sie reagieren soll. Dies geschieht mit der Anweisung</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">SET HANDLER h1 h2 ... [FOR]...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diese Anweisung verknüpft eine Liste von Behandlermethoden mit Auslösermethoden. Dabei sind hinsichtlich der ausgelösten Ereignisse vier Fälle zu unterscheiden:</p>
+</div>
+<div class="paragraph">
+<p><strong>Das Ereignis ist</strong><br>
+- ein Instanzereignis, das in einer Klasse oder<br>
+- ein Instanzereignis, das in einem Interface oder<br>
+- ein statisches Ereignis, das in einer Klasse oder<br>
+- ein statisches Ereignis, das in einem Interface<br>
+deklariert ist.</p>
+</div>
+<div class="paragraph">
+<p>Je nach Ereignis ist die Syntax und die Wirkung der Anweisung <strong>SET HANDLER</strong> unterschiedlich.</p>
+</div>
+<div class="paragraph">
+<p>Bei Instanzereignissen muss mit dem Zusatz <strong>FOR</strong> angegeben werden, für welche auslösende Instanz die Behandler registriert werden. Dabei kann entweder genau eine auslösende Instanz mit Hilfe einer Referenzvariablen ref angeben werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">SET HANDLER h1 h2 ... FOR ref.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Oder die Behandler werden für alle Instanzen registriert, die das Ereignis auslösen können:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">SET HANDLER h1 h2 ... FOR ALL INSTANCES.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diese Registrierung gilt auch für auslösende Instanzen, die zum Zeitpunkt der Registrierung noch gar nicht erzeugt wurden.<br>
+Bei statischen Ereignissen darf kein FOR-Zusatz verwendet werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">SET HANDLER h1 h2 ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Registrierung gilt automatisch für die gesamte Klasse, bzw. für alle Klassen, die ein Interface mit einem statischen Ereignis implementieren. Bei Interfaces gilt die Registrierung auch für auslösende Klassen, die erst nach dem Zeitpunkt der Registrierung geladen werden.</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Beispiel:</strong><br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-abap" data-lang="abap">CLASS lcl_pupil DEFINITION.
+  PUBLIC SECTION.
+    EVENTS pupil_created EXPORTING VALUE(eo_pupil) TYPE REF TO lcl_pupil.
+    METHODS: constructor IMPORTING VALUE(is_pupil) TYPE z001_63_pupil,
+      get_data RETURNING VALUE(rs_data) TYPE z001_63_pupil.
+
+  PRIVATE SECTION.
+    DATA: ms_pupil TYPE z001_63_pupil.
+ENDCLASS.
+
+CLASS lcl_pupil IMPLEMENTATION.
+  METHOD constructor.
+    ms_pupil = is_pupil.
+    RAISE EVENT pupil_created EXPORTING eo_pupil = me.
+  ENDMETHOD.
+
+  METHOD get_data.
+    rs_data = ms_pupil.
+  ENDMETHOD.
+ENDCLASS.
+
+CLASS lcl_pupillist  DEFINITION.
+  PUBLIC SECTION.
+    METHODS: constructor,
+      on_pupil_created FOR EVENT pupil_created
+          OF lcl_pupil IMPORTING eo_pupil,
+      tab_pupil.
+  PRIVATE SECTION.
+    DATA: mo_pupil  TYPE TABLE OF REF TO lcl_pupil.
+ENDCLASS.
+
+CLASS lcl_pupillist IMPLEMENTATION.
+  METHOD constructor.
+  ENDMETHOD.
+
+  METHOD on_pupil_created.
+    APPEND eo_pupil TO mo_pupil.
+  ENDMETHOD.
+  METHOD tab_pupil.
+    LOOP AT mo_pupil INTO DATA(lo_pupil).
+      WRITE:/ lo_pupil-&gt;get_data( )-surname, lo_pupil-&gt;get_data( )-name,
+      lo_pupil-&gt;get_data( )-cid.
+    ENDLOOP.
+  ENDMETHOD.
+
+ENDCLASS.
+*-----------------------------------------
+DATA: go_list  TYPE REF TO lcl_pupillist,
+      go_pupil TYPE REF TO lcl_pupil,
+      gs_data  TYPE z001_63_pupil.
+
+START-OF-SELECTION.
+  go_list = NEW #( ).
+  SET HANDLER go_list-&gt;on_pupil_created FOR ALL INSTANCES.
+
+  gs_data = zkoe1_gc_pupil_crud=&gt;select_single( in_id = 1 ).
+  go_pupil = NEW lcl_pupil( is_pupil = gs_data ).
+
+  gs_data = zkoe1_gc_pupil_crud=&gt;select_single( in_id = 5 ).
+  go_pupil = NEW lcl_pupil( is_pupil = gs_data ).
+
+  gs_data = zkoe1_gc_pupil_crud=&gt;select_single( in_id = 10 ).
+  go_pupil = NEW lcl_pupil( is_pupil = gs_data ).
+
+  go_list-&gt;tab_pupil( ).</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_weitere_objektorientierte_konzepte">7. Weitere objektorientierte Konzepte</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_singleton_pattern">7.1. Singleton-Pattern</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friends">8. Friends</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2022-11-22 09:26:00 +0100
+</div>
+</div>
+</body>
+</html>

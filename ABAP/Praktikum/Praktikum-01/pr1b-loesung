@@ -1,0 +1,54 @@
+*&---------------------------------------------------------------------*
+*& Report zkoe1_wh_praktikum1b
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zkoe1_wh_praktikum1b.
+*1a) all classes
+SELECT * FROM zkoe2_d_class
+INTO TABLE @DATA(gt_class1).
+*cl_demo_output=>display( gt_class1 ).
+
+*1b) all classes from bfs
+SELECT * FROM zkoe2_d_class
+INTO TABLE @DATA(gt_class2)
+WHERE shortname LIKE 'BFS%'.
+*cl_demo_output=>display( gt_class2 ).
+
+*1c) all classes of one grade
+DATA: gv_grade TYPE c LENGTH 2 VALUE '11'.
+DATA: gv_term TYPE string.
+gv_term = |%{ gv_grade }%|.
+
+SELECT * FROM zkoe2_d_class
+INTO TABLE @DATA(gt_class3)
+WHERE longterm LIKE @gv_term.
+*cl_demo_output=>display( gt_class3 ).
+
+*2a) all pupils
+SELECT * FROM zkoe2_d_pupil
+INTO TABLE @DATA(gt_pupil1).
+*cl_demo_output=>display( gt_pupil1 ).
+
+*2b) all pupils of one grade
+SELECT * FROM zkoe2_d_pupil
+INTO TABLE @DATA(gt_pupil2)
+WHERE cid = 3.
+*cl_demo_output=>display( gt_pupil2 ).
+
+*2c) all pupils born after 2000
+SELECT * FROM zkoe2_d_pupil
+WHERE substring( birthday, 1, 4 ) >= '2000'
+INTO TABLE @DATA(gt_pupil3).
+*cl_demo_output=>display( gt_pupil3 ).
+
+*3) pupils of one grade
+DATA: gn_class TYPE zkoe2_d_class-id VALUE 2.
+SELECT SINGLE * FROM zkoe2_d_class INTO @DATA(gs_class)
+WHERE id = @gn_class.
+WRITE:/ gs_class-id, gs_class-shortname, gs_class-longterm.
+
+SELECT * FROM zkoe2_d_pupil
+INTO TABLE @DATA(gt_pupil4)
+WHERE cid = @gs_class-id.
+cl_demo_output=>display( gt_pupil4 ).

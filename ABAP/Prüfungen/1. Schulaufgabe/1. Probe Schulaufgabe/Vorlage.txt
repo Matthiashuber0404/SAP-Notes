@@ -1,0 +1,15 @@
+DATA: go_geschenk      TYPE REF TO zxxx_xx_cl_geschenk,
+      go_nahrung       TYPE REF TO zxxx_xx_cl_nahrung,
+      gn_summe         TYPE dec10_2.
+
+
+
+
+WRITE: / 'Meine Einkaufsliste für Weihnachten'.
+ULINE.
+*WRITE: / 'Nummer des letzten Einkaufs:', get_akt_nummer( ).
+ULINE.
+
+
+ULINE.
+WRITE: /30 'Summe gesamt:', 45 gn_summe.

@@ -1,0 +1,17 @@
+DATA: gn_wkn   TYPE zpe_wpapier-wkn VALUE 878841.
+*      gt_kurse TYPE .
+
+
+
+WRITE: / |Anzahl aller Wertpapiere: { 0 }|.
+SKIP.
+
+
+
+ULINE.
+WRITE: 'Datum', 16 'Kurswert'.
+*LOOP AT gt_kurse ASSIGNING FIELD-SYMBOL(<fs_kurs>).
+*  WRITE: / <fs_kurs>-datum, <fs_kurs>-kurswert.
+*ENDLOOP.
+ULINE.
+WRITE: / |Letzter Kurswert am { sy-datum DATE = USER }: { 0 }|.

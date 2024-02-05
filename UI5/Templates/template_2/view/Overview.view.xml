@@ -1,0 +1,12 @@
+<mvc:View  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="routing.template.controller.Overview">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Button text="zur Detailseite" press="onZurDetailseiteButtonPress" />
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

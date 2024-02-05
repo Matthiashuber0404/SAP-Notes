@@ -1,0 +1,27 @@
+REPORT zbot_poolliste_vorlage.
+
+"DATA: toDo
+
+START-OF-SELECTION.
+"Handler setzen
+  SELECT * FROM zbot_testdaten INTO TABLE @DATA(gt_testdaten).
+  LOOP AT gt_testdaten INTO DATA(gs_testdaten).
+    TRY.
+       "neues Objekt erzeugen
+*      CATCH ....
+       "Fehler speichern
+    ENDTRY.
+  ENDLOOP.
+
+  WRITE:/ 'Anzahl Pflanzen:', 'X'.
+  SKIP 1.
+  WRITE:/'Gefundene Pflanzen:'.
+  ULINE.
+  "Ausgabe der korrekten Pflanzen
+
+  SKIP 1.
+  WRITE:/ 'Fehlerliste'.
+  ULINE.
+*  LOOP AT
+*    Fehler ausgeben
+*  ENDLOOP.

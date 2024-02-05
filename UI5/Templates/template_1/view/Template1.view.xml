@@ -1,0 +1,13 @@
+<mvc:View controllerName="basic.template.controller.Template1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="idShell">
+		<App id="idApp">
+			<pages>
+				<Page id="idPage" title="{i18n>title}">
+					<content>
+						<Text text="Das ist Template 1"></Text>
+					</content>					
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

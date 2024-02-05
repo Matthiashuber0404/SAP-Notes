@@ -1,0 +1,122 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "ch05.chap05_splitapp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "ch05.chap05_splitapp.view.Splitapp",
+			"type": "XML",
+			"async": true,
+			"id": "Splitapp"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ch05.chap05_splitapp.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "ch05.chap05_splitapp.view",
+				"controlId": "idSplitApp",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "routeStart",
+					"pattern": "",
+					"target": [
+						"Master",
+						"DetailStart"
+					]
+				},
+				{
+					"name": "routeFS",
+					"pattern": "navDetailFS",
+					"target": [
+						"Master",
+						"DetailFachschule"
+					]
+				},
+				{
+					"name": "route2",
+					"pattern": "navDetailSchool/{detailPath}",
+					"target": [
+						"Master",
+						"DetailFachschule"
+					]
+				}
+			],
+			"targets": {
+				"Master": {
+					"viewType": "XML",
+					"viewName": "Master",
+					"controlAggregation": "masterPages"
+				},
+				"DetailStart": {
+					"viewType": "XML",
+					"viewName": "DetailStart",
+					"controlAggregation": "detailPages"
+				},
+				"DetailFachschule": {
+					"viewType": "XML",
+					"viewName": "DetailFachschule",
+					"controlAggregation": "detailPages"
+				}
+			}
+		}
+	}
+}

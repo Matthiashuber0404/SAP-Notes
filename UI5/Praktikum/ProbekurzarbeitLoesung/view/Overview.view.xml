@@ -1,0 +1,30 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="routing.template.controller.Overview">
+	<App>
+		<pages>
+			<Page title="Events">
+				<VBox class="aussen">
+					<Text text="Unser Unternehmen" class="textcolor font" ></Text>
+					<Text text="{event>/Firma/Name}" class="textcolor font"></Text>
+				</VBox> 
+				<Panel content="{event>/Orte}">
+					<GenericTile class ="tile aussen" header="{event>Ortbez}"  press="onGenericTilePress">
+						<TileContent footer="{event>Oid}">
+							<content>
+								<VBox>
+									<ImageContent src="pics/event.jpg"/>
+								</VBox>
+							</content>
+						</TileContent>
+					</GenericTile>
+				</Panel>
+				<footer>
+					<Toolbar >
+						<ToolbarSpacer ></ToolbarSpacer>
+						<Button text="Info" press="onInfoButtonPress" />
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
